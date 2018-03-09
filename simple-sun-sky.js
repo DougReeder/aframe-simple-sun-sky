@@ -23,12 +23,14 @@ precision mediump float;
 
 uniform vec3 lightColor;
 uniform vec3 darkColor;
+uniform vec3 sunColor;
 
 varying float interp;
 
 
 void main() {
     vec3 color = mix(lightColor, darkColor, interp);
+    color = mix(sunColor, color, min((interp-0.015)*75.0, 1.0));
     gl_FragColor = vec4(color, 1.0);
 }`;
 
@@ -37,7 +39,8 @@ AFRAME.registerShader('simpleSunSky', {
     schema: {
         sunPosition: {type: 'vec3', default: {x:1.0, y:1.0, z:1.0}},
         lightColor: {type: 'color', default: '#87cefa'},   // light sky blue
-        darkColor: {type: 'color', default: '#126aab'}   // dark sky blue
+        darkColor: {type: 'color', default: '#126aab'},   // dark sky blue
+        sunColor: {type: 'color', default: '#fff7ee'}   // yellow-white
     },
 
     /**
@@ -50,7 +53,8 @@ AFRAME.registerShader('simpleSunSky', {
             uniforms: {
                 lightColor: {value: new THREE.Color(data.lightColor)},
                 darkColor: {value: new THREE.Color(data.darkColor)},
-                sunNormal: {value: sunPos.normalize()}
+                sunNormal: {value: sunPos.normalize()},
+                sunColor: {value: new THREE.Color(data.sunColor)}
             },
             vertexShader,
             fragmentShader
@@ -87,6 +91,7 @@ AFRAME.registerPrimitive('a-simple-sun-sky', {
     mappings: {
         'sun-position': 'material.sunPosition',
         'light-color': 'material.lightColor',
-        'dark-color': 'material.darkColor'
+        'dark-color': 'material.darkColor',
+        'sun-color': 'material.sunColor'
     }
 });
