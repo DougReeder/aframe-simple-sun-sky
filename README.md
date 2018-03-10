@@ -7,7 +7,7 @@ Does *not* include any directional lighting.  You may need to set sun-position o
 
 ![sample screenshot](sample.png)
 
-[live example scene](example.html)
+[live example scene](https://dougreeder.github.io/aframe-simple-sun-sky/example.html)
 
 When the sun goes below the horizon, you might want to switch to a different sky.
 
