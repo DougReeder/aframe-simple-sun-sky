@@ -1,7 +1,15 @@
-// simple-sun-sky.js - An A-Frame sky primitive using a simple (and fast) gradient away from the sun patch.
+// simple-sun-sky.js - An A-Frame sky primitive using a simple (and fast) gradient away from the sun.
 // Copyright © 2018 P. Douglas Reeder under the MIT License
 
-const vertexShader = `
+AFRAME.registerShader('simpleSunSky', {
+    schema: {
+        sunPosition: {type: 'vec3', default: {x:1.0, y:1.0, z:1.0}},
+        lightColor: {type: 'color', default: '#87cefa'},   // light sky blue
+        darkColor: {type: 'color', default: '#126aab'},   // dark sky blue
+        sunColor: {type: 'color', default: '#fff7ee'}   // yellow-white
+    },
+
+    vertexShader: `
 precision mediump float;
 
 const float PI = 3.1415926535897932384626433832795;
@@ -15,10 +23,9 @@ void main() {
   interp = acos(dot(normal, sunNormal)) / PI;
        
   gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-}`;
+}`,
 
-
-const fragmentShader = `
+    fragmentShader: `
 precision mediump float;
 
 uniform vec3 lightColor;
@@ -32,16 +39,7 @@ void main() {
     vec3 color = mix(lightColor, darkColor, interp);
     color = mix(sunColor, color, min((interp-0.015)*75.0, 1.0));
     gl_FragColor = vec4(color, 1.0);
-}`;
-
-
-AFRAME.registerShader('simpleSunSky', {
-    schema: {
-        sunPosition: {type: 'vec3', default: {x:1.0, y:1.0, z:1.0}},
-        lightColor: {type: 'color', default: '#87cefa'},   // light sky blue
-        darkColor: {type: 'color', default: '#126aab'},   // dark sky blue
-        sunColor: {type: 'color', default: '#fff7ee'}   // yellow-white
-    },
+}`,
 
     /**
      * `init` used to initialize material. Called once.
@@ -56,8 +54,8 @@ AFRAME.registerShader('simpleSunSky', {
                 sunNormal: {value: sunPos.normalize()},
                 sunColor: {value: new THREE.Color(data.sunColor)}
             },
-            vertexShader,
-            fragmentShader
+            vertexShader: this.vertexShader,
+            fragmentShader: this.fragmentShader
         });
     },
     /**
