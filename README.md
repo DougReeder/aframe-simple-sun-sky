@@ -5,7 +5,10 @@ An [A-Frame](https://aframe.io) [WebVR](https://webvr.info/) sky primitive using
 Saves your GPU power for the terrain!
 Does *not* include any directional lighting.  You may need to set sun-position on other elements to match.
 
-Any of the properties may be animated.
+![sample screenshot](sample.png)
+
+[live example scene](example.html)
+
 When the sun goes below the horizon, you might want to switch to a different sky.
 
 Include using 
