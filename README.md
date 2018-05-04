@@ -27,6 +27,13 @@ Setting colors:
 <a-simple-sun-sky sun-position="-1 1 -1" light-color="#87cefa" dark-color="#00bfff"></a-simple-sun-sky>
 ```
 
+Adding lights so shadows work correctly:
+```html
+<a-simple-sun-sky sun-position="0.7 0.4 -1"></a-simple-sun-sky>
+<a-entity light="type: ambient; color: #BBB"></a-entity>
+<a-entity light="type: directional; color: #FFF; intensity: 0.6" position="0.7 0.4 -1"></a-entity>
+```
+
 
 Increasing radius of sphere (increase the `far` parameter of the camera, too):
 ```html
