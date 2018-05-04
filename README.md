@@ -13,7 +13,7 @@ When the sun goes below the horizon, you might want to switch to a different sky
 
 Include using 
 ```html
-    <script src="https://cdn.rawgit.com/DougReeder/aframe-simple-sun-sky/6cff915e/simple-sun-sky.js"></script>
+    <script src="https://cdn.rawgit.com/DougReeder/aframe-simple-sun-sky/v1.1.0/simple-sun-sky.js"></script>
 ```
 
 
@@ -25,4 +25,10 @@ Basic use:
 Setting colors:
 ```html
 <a-simple-sun-sky sun-position="-1 1 -1" light-color="#87cefa" dark-color="#00bfff"></a-simple-sun-sky>
+```
+
+
+Increasing radius of sphere (increase the `far` parameter of the camera, too):
+```html
+<a-simple-sun-sky sun-position="1 0.1 0" radius="30000"></a-simple-sun-sky>
 ```

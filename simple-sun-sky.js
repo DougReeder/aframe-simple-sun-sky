@@ -76,7 +76,7 @@ AFRAME.registerPrimitive('a-simple-sun-sky', {
     defaultComponents: {
         geometry: {
             primitive: 'sphere',
-            radius: 7500,
+            radius: 5000,
             segmentsWidth: 64,
             segmentsHeight: 20
         },
@@ -90,6 +90,7 @@ AFRAME.registerPrimitive('a-simple-sun-sky', {
         'sun-position': 'material.sunPosition',
         'light-color': 'material.lightColor',
         'dark-color': 'material.darkColor',
-        'sun-color': 'material.sunColor'
+        'sun-color': 'material.sunColor',
+        'radius': 'geometry.radius'
     }
 });
