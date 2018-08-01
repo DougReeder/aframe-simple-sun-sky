@@ -6,17 +6,35 @@
     <meta name="description" content="An example scene with a simple-sun-sky and some polyhedrons">
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/DougReeder/aframe-simple-sun-sky/v1.1.0/simple-sun-sky.js"></script>
+    <script>
+AFRAME.registerComponent('moving-sun', {
+    init: function () {
+        this.positionSph = new THREE.Spherical(1, Math.PI/2, 0);
+        this.position = new THREE.Vector3();
+        this.sss = document.querySelector('a-simple-sun-sky');
+        this.directional = document.getElementById('directional');
+    },
+
+    tick: function (time) {
+        this.positionSph.phi = Math.PI/2 + Math.sin(time / 8000 * 2 * Math.PI) * 0.6;
+        this.positionSph.theta = Math.PI + Math.sin(time / 12000 * 2 * Math.PI) * 0.6;
+        this.position.setFromSpherical(this.positionSph);
+        let positionStr = this.position.x + ' ' + this.position.y + ' ' + this.position.z;
+//        console.log(positionStr);
+        this.sss.setAttribute('sun-position', positionStr);
+        this.directional.setAttribute('position', positionStr);
+    }
+});
+    </script>
 </head>
 <body>
-<a-scene>
+<a-scene moving-sun>
     <a-simple-sun-sky sun-position="0.7 0.4 -1"></a-simple-sun-sky>
     <a-entity light="type: ambient; color: #BBB"></a-entity>
-    <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="0.7 0.4 -1"></a-entity>
+    <a-entity id="directional" light="type: directional; color: #FFF; intensity: 0.6" position="0.7 0.4 -1"></a-entity>
 
-    <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
-    <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
-    <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
-    <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+    <a-sphere position="0 1.25 -5" radius="0.6" color="#EF2D5E" shadow></a-sphere>
+    <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" opacity="0.3" transparent:true shadow></a-plane>
 </a-scene>
 </body>
 </html>
