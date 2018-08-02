@@ -13,7 +13,7 @@ When the sun goes below the horizon, you might want to switch to a different sky
 
 Include using 
 ```html
-    <script src="https://cdn.rawgit.com/DougReeder/aframe-simple-sun-sky/v1.1.1/simple-sun-sky.js"></script>
+<script src="https://unpkg.com/aframe-simple-sun-sky@^1.2.0/simple-sun-sky.js"></script>
 ```
 
 
@@ -22,9 +22,19 @@ Basic use:
 <a-simple-sun-sky sun-position="1 0.1 0"></a-simple-sun-sky>
 ```
 
-Setting colors:
+
+The sky fades to fog-color near the horizon.
+If you use fog in your scene, set fog-color the same or very similar to your fog.
+If you don't use fog, set fog-color to a grayish variant of your sky colors.
+The special value 'none' will disable the horizon effect, for those rare worlds that are all sky and no land.
 ```html
-<a-simple-sun-sky sun-position="-1 1 -1" light-color="#87cefa" dark-color="#00bfff"></a-simple-sun-sky>
+<a-simple-sun-sky sun-position="1 0.1 0" fog-color="#5681ac"></a-simple-sun-sky>
+```
+
+
+Setting the colors of the sky:
+```html
+<a-simple-sun-sky sun-position="-1 1 -1" light-color="#87cefa" dark-color="#00bfff" fog-color="#74d2fa"></a-simple-sun-sky>
 ```
 
 Adding lights so shadows work correctly:
@@ -35,7 +45,10 @@ Adding lights so shadows work correctly:
 ```
 
 
-Increasing radius of sphere (increase the `far` parameter of the camera, too):
+Increasing radius of sky sphere (increase the `far` parameter of the camera, too):
 ```html
 <a-simple-sun-sky sun-position="1 0.1 0" radius="30000"></a-simple-sun-sky>
 ```
+
+
+You can change any of the colors on the fly, except changing fog to or from 'none'.

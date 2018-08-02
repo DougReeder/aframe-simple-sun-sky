@@ -1,0 +1,28 @@
+{
+  "name": "aframe-simple-sun-sky",
+  "version": "1.2.0",
+  "description": "Sky primitive using a simple (and fast) gradient away from the sun. For A-Frame WebVR.",
+  "browser": "simple-sun-sky.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DougReeder/aframe-simple-sun-sky.git"
+  },
+  "keywords": [
+    "sky",
+    "sun",
+    "aframe",
+    "aframe-component",
+    "webvr",
+    "vr"
+  ],
+  "author": "Doug Reeder <reeder.29@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DougReeder/aframe-simple-sun-sky/issues"
+  },
+  "homepage": "https://github.com/DougReeder/aframe-simple-sun-sky#readme",
+  "contributors": []
+}
