@@ -13,7 +13,7 @@ When the sun goes below the horizon, you might want to switch to a different sky
 
 Include using 
 ```html
-    <script src="https://cdn.rawgit.com/DougReeder/aframe-simple-sun-sky/v1.1.0/simple-sun-sky.js"></script>
+    <script src="https://cdn.rawgit.com/DougReeder/aframe-simple-sun-sky/v1.1.1/simple-sun-sky.js"></script>
 ```
 
 
