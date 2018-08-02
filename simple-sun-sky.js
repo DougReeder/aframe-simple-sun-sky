@@ -12,15 +12,10 @@ AFRAME.registerShader('simpleSunSky', {
     vertexShader: `
 precision mediump float;
 
-const float PI = 3.1415926535897932384626433832795;
-
-uniform vec3 sunNormal;
-
-varying float interp;
+varying vec3 vnorm;
 
 void main() {
-  // ranges from 0 when normal & sunNormal are aligned to 1 when opposite
-  interp = acos(dot(normal, sunNormal)) / PI;
+    vnorm = normal;
        
   gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 }`,
@@ -28,14 +23,21 @@ void main() {
     fragmentShader: `
 precision mediump float;
 
+const float PI = 3.1415926535897932384626433832795;
+
+uniform vec3 sunNormal;
 uniform vec3 lightColor;
 uniform vec3 darkColor;
 uniform vec3 sunColor;
 
-varying float interp;
+varying vec3 vnorm;
 
 
 void main() {
+    vec3 norm = normalize(vnorm);
+    // ranges from 0 when normal & sunNormal are aligned to 1 when opposite
+    float interp = acos(dot(norm, sunNormal)) / PI;
+
     vec3 color = mix(lightColor, darkColor, interp);
     color = mix(sunColor, color, min((interp-0.015)*75.0, 1.0));
     gl_FragColor = vec4(color, 1.0);

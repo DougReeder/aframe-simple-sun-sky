@@ -5,7 +5,8 @@
     <title>aframe-simple-sun-sky Primitive</title>
     <meta name="description" content="An example scene with a simple-sun-sky and some polyhedrons">
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/DougReeder/aframe-simple-sun-sky/v1.1.0/simple-sun-sky.js"></script>
+    <!--<script src="simple-sun-sky.js"></script>-->
+    <script src="https://cdn.rawgit.com/DougReeder/aframe-simple-sun-sky/v1.1.1/simple-sun-sky.js"></script>
     <script>
 AFRAME.registerComponent('moving-sun', {
     init: function () {
@@ -16,8 +17,8 @@ AFRAME.registerComponent('moving-sun', {
     },
 
     tick: function (time) {
-        this.positionSph.phi = Math.PI/2 + Math.sin(time / 8000 * 2 * Math.PI) * 0.6;
-        this.positionSph.theta = Math.PI + Math.sin(time / 12000 * 2 * Math.PI) * 0.6;
+        this.positionSph.phi = Math.PI/2 + Math.sin(time / 16000 * 2 * Math.PI) * 0.6;
+        this.positionSph.theta = Math.PI + Math.sin(time / 24000 * 2 * Math.PI) * 0.6;
         this.position.setFromSpherical(this.positionSph);
         let positionStr = this.position.x + ' ' + this.position.y + ' ' + this.position.z;
 //        console.log(positionStr);
