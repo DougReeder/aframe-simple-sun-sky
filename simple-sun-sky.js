@@ -1,5 +1,5 @@
 // simple-sun-sky.js - An A-Frame sky primitive using a simple (and fast) gradient away from the sun.
-// Copyright © 2018 P. Douglas Reeder under the MIT License
+// Copyright © 2018-2019 P. Douglas Reeder under the MIT License
 
 AFRAME.registerShader('simpleSunSky', {
     schema: {
@@ -7,7 +7,8 @@ AFRAME.registerShader('simpleSunSky', {
         lightColor: {type: 'color', default: '#87cefa'},   // light sky blue
         darkColor: {type: 'color', default: '#126aab'},   // dark sky blue
         fogColor: {type: 'color', default: '#4c9cd2'},   // light+dark+gray
-        sunColor: {type: 'color', default: '#fff7ee'}   // yellow-white
+        sunColor: {type: 'color', default: '#fff7ee'},   // yellow-white
+        log: {type: 'boolean', default: false}
     },
 
     vertexShader: `
@@ -78,7 +79,9 @@ void main() {
     init: function (data) {
         let sunPos = new THREE.Vector3(data.sunPosition.x, data.sunPosition.y, data.sunPosition.z);
         if (data.fogColor.toUpperCase() === 'NONE') {
-            console.log("sunPos:", sunPos, "   lightColor:", new THREE.Color(data.lightColor), "   darkColor:", new THREE.Color(data.darkColor));
+            if (data.log) {
+                console.log("sunPos:", sunPos, "   lightColor:", new THREE.Color(data.lightColor), "   darkColor:", new THREE.Color(data.darkColor));
+            }
             this.material = new THREE.ShaderMaterial({
                 uniforms: {
                     lightColor: {value: new THREE.Color(data.lightColor)},
@@ -90,8 +93,10 @@ void main() {
                 fragmentShader: this.fragmentShader
             });
         } else {
-            console.log("sunPos:", sunPos, "   lightColor:", new THREE.Color(data.lightColor), "   darkColor:", new THREE.Color(data.darkColor),
-                "   fogColor:", new THREE.Color(data.fogColor));
+            if (data.log) {
+                console.log("sunPos:", sunPos, "   lightColor:", new THREE.Color(data.lightColor), "   darkColor:", new THREE.Color(data.darkColor),
+                    "   fogColor:", new THREE.Color(data.fogColor));
+            }
             this.material = new THREE.ShaderMaterial({
                 uniforms: {
                     lightColor: {value: new THREE.Color(data.lightColor)},
@@ -143,6 +148,7 @@ AFRAME.registerPrimitive('a-simple-sun-sky', {
         'dark-color': 'material.darkColor',
         'sun-color': 'material.sunColor',
         'fog-color': 'material.fogColor',
+        'log': 'material.log',
         'radius': 'geometry.radius'
     }
 });

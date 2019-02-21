@@ -13,7 +13,7 @@ When the sun goes below the horizon, you might want to switch to a different sky
 
 Include using 
 ```html
-<script src="https://unpkg.com/aframe-simple-sun-sky@^1.2.0/simple-sun-sky.js"></script>
+<script src="https://unpkg.com/aframe-simple-sun-sky@^1.2.1/simple-sun-sky.js"></script>
 ```
 
 
@@ -45,7 +45,7 @@ Adding lights so shadows work correctly:
 ```
 
 
-Increasing radius of sky sphere (increase the `far` parameter of the camera, too):
+Increasing radius (default 5000) of sky sphere (increase the `far` parameter of the camera, too):
 ```html
 <a-simple-sun-sky sun-position="1 0.1 0" radius="30000"></a-simple-sun-sky>
 ```
