@@ -65,10 +65,10 @@ void main() {
     float interp = acos(dot(norm, sunNormal)) / PI;
 
     vec3 color = mix(lightColor, darkColor, interp);
-    color = mix(sunColor, color, min((interp-0.015)*75.0, 1.0));
+    
+    color = mix(sunColor, color, smoothstep(0.009, 0.012, interp));
 
-    float fogInterp = max(min(1.0 - norm.y * 8.0, 1.0), 0.0);
-    color = mix(color, fogColor, fogInterp);
+    color = mix(fogColor, color, smoothstep(0.0, 0.3, norm.y));
 
     gl_FragColor = vec4(color, 1.0);
 }`,

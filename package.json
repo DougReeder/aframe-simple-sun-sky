@@ -1,6 +1,6 @@
 {
   "name": "aframe-simple-sun-sky",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Sky primitive using a simple (and fast) gradient away from the sun. For A-Frame WebVR.",
   "browser": "simple-sun-sky.js",
   "scripts": {
