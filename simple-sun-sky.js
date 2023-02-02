@@ -1,5 +1,5 @@
 // simple-sun-sky.js - An A-Frame sky primitive using a simple (and fast) gradient away from the sun.
-// Copyright © 2018-2019 P. Douglas Reeder under the MIT License
+// Copyright © 2018-2023 P. Douglas Reeder under the MIT License
 
 AFRAME.registerShader('simpleSunSky', {
     schema: {
@@ -12,8 +12,6 @@ AFRAME.registerShader('simpleSunSky', {
     },
 
     vertexShader: `
-precision mediump float;
-
 varying vec3 vnorm;
 
 void main() {
@@ -23,8 +21,6 @@ void main() {
 }`,
 
     fragmentShader: `
-precision mediump float;
-
 const float PI = 3.1415926535897932384626433832795;
 
 uniform vec3 sunNormal;
@@ -46,8 +42,6 @@ void main() {
 }`,
 
     fragmentShaderWithFog: `
-precision mediump float;
-
 const float PI = 3.1415926535897932384626433832795;
 
 uniform vec3 sunNormal;
